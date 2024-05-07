@@ -1,0 +1,88 @@
+
+
+<table mat-table [dataSource]="dataSource" matSort
+       class="mat-elevation-z8">
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="metric">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+      Metric's Name
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.metric}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+      Paper Title
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="assessment">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
+      Assessment Approach
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.assessment}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="input">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+      Input Artifact Type
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.input}} </td>
+  </ng-container>
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+      Metric Description
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+  <ng-container matColumnDef="setting">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+      Experimental Setting
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.setting}} </td>
+  </ng-container>
+  <ng-container matColumnDef="object">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+      Experimental Objects Type
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.object}} </td>
+  </ng-container>
+  <ng-container matColumnDef="property">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+      Measured Property
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.property}} </td>
+  </ng-container>
+  <ng-container matColumnDef="output">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+      Output Category
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.output}} </td>
+  </ng-container>
+  <ng-container matColumnDef="field">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+      Application Field
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.field}} </td>
+  </ng-container>
+  <ng-container matColumnDef="standard">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+      Standard
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.standard}} </td>
+  </ng-container>
+  <ng-container matColumnDef="score">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+      Compliance Score
+    </th>
+    <td mat-cell *matCellDef="let element"> {{element.score}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true" ></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

@@ -1,0 +1,11 @@
+
+table {
+  width: 100%;
+  margin-top: 60px;
+}
+
+th.mat-sort-header-sorted {
+  color: blue;
+}
+
+
