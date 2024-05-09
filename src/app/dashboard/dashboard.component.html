@@ -1,4 +1,27 @@
 
+<mat-form-field id="btn-filter" >
+  <mat-label>Filter results</mat-label>
+  <mat-select [(value)]="selected" (valueChange)="filterMetrics(selected)">
+    <mat-option value="Framework">Framework</mat-option>
+    <mat-option value="Tool">Tool</mat-option>
+    <mat-option value="Methodology">Methodology</mat-option>
+    <mat-option value="Architecture">Architecture</mat-option>
+    <mat-option value="Test">Test</mat-option>
+    <mat-option value="Deployment">Deployment</mat-option>
+    <mat-option value="Requirement">Requirement</mat-option>
+    <mat-option value="Code">Code</mat-option>
+    <mat-option value="Formula">Formula</mat-option>
+    <mat-option value="Textual">Textual</mat-option>
+    <mat-option value="Industrial">Industrial</mat-option>
+    <mat-option value="Academic">Academic</mat-option>
+    <mat-option value="Proprietary">Proprietary</mat-option>
+    <mat-option value="Open Source">Open Source</mat-option>
+
+
+  </mat-select>
+</mat-form-field>
+
+<button  mat-raised-button (click)="resetFilter()" >Reset Filters</button>
 
 <table mat-table [dataSource]="dataSource" matSort
        class="mat-elevation-z8">

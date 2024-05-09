@@ -3,6 +3,13 @@ import {LiveAnnouncer} from '@angular/cdk/a11y';
 import {AfterViewInit, ViewChild} from '@angular/core';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import {MatFormField} from "@angular/material/form-field";
+import {MatOption, MatSelect} from "@angular/material/select";
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatRadioButton} from "@angular/material/radio";
+import {MatButton} from "@angular/material/button";
+import {RouterLink} from "@angular/router";
 
 export interface Metrics {
   metric: string;
@@ -19,7 +26,6 @@ export interface Metrics {
   score: string;
 }
 const ELEMENT_DATA: Metrics[] = [
-  //{position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
   {metric: 'Avarage Input Interface Size of Components', title: 'A viewpoint-based evaluation method for future Automotive Architectures', assessment: 'Framework', input: 'Architecture', description: 'Formula', setting: 'Academic', object: 'Proprietary', property: 'Complexity', output: 'Component', field: 'E/E-architecture', standard: '', score: '++'},
   {metric: 'Testability Metric', title: 'A viewpoint-based evaluation method for future Automotive Architectures', assessment: 'Framework', input: 'Architecture', description: 'Formula', setting: 'Academic', object: 'Proprietary', property: 'Software Defect Proneness', output: 'System', field: 'E/E-architecture', standard: '', score: '++'},
   {metric: 'Cost Function', title: 'A viewpoint-based evaluation method for future Automotive Architectures', assessment: 'Framework', input: 'Architecture', description: 'Formula', setting: 'Academic', object: 'Proprietary', property: 'Cost', output: 'System', field: 'E/E-architecture', standard: '', score: '++'},
@@ -74,23 +80,49 @@ const ELEMENT_DATA: Metrics[] = [
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [MatTableModule, MatSortModule],
+  imports: [MatTableModule, MatSortModule, MatFormField, MatSelect, MatOption, MatSelectModule, MatFormFieldModule, MatRadioButton, MatButton, RouterLink],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent implements AfterViewInit{
-  displayedColumns: string[] = ['metric', 'title', 'assessment', 'input','description','setting', 'object', 'property', 'output', 'field', 'standard', 'score'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
 
+export class DashboardComponent implements AfterViewInit{
+  selected = 'none';
+  displayedColumns: string[] = ['metric', 'title', 'assessment', 'input','description','setting', 'object', 'property', 'output', 'field', 'standard', 'score'];
+  prova = ELEMENT_DATA;
+  dataSource = new MatTableDataSource(this.prova);
   constructor(private _liveAnnouncer: LiveAnnouncer) {}
 
   // @ts-ignore
   @ViewChild(MatSort) sort: MatSort;
 
+
+
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
+  filterMetrics(searchTerm: string): void {
+    this.prova = ELEMENT_DATA.filter(item =>
+      Object.values(item).some(value => value.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+    console.log(this.prova);
+    this.dataSource = new MatTableDataSource(this.prova);
+  }
+
+  resetFilter(){
+    this.prova = ELEMENT_DATA;
+    this.dataSource = new MatTableDataSource(this.prova);
+
+  }
+
+
+  test(selected: string){
+    this.selected = selected;
+    console.log(selected);
+    console.log(typeof ELEMENT_DATA);
+  }
+
 
   /** Announce the change in sort state for assistive technology. */
 
 }
+
