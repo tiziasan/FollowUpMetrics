@@ -108,8 +108,8 @@ export class DashboardComponent implements AfterViewInit{
     this.prova = this.prova.filter(item =>
       Object.values(item).some(value => value.toLowerCase().includes(searchTerm.toLowerCase()))
     );
-    console.log(this.prova);
-    this.dataSource = new MatTableDataSource(this.prova);
+    this.dataSource.data = this.prova;
+
     if (!this.selectedValues.includes(searchTerm)) {
       this.selectedValues.push(searchTerm);
     }
@@ -117,7 +117,7 @@ export class DashboardComponent implements AfterViewInit{
 
   resetFilter(){
     this.prova = ELEMENT_DATA;
-    this.dataSource = new MatTableDataSource(this.prova);
+    this.dataSource.data = ELEMENT_DATA;
     this.selectedValues = [];
   }
 
