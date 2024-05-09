@@ -101,7 +101,7 @@ export class DashboardComponent implements AfterViewInit{
     this.dataSource.sort = this.sort;
   }
   filterMetrics(searchTerm: string): void {
-    this.prova = ELEMENT_DATA.filter(item =>
+    this.prova = this.prova.filter(item =>
       Object.values(item).some(value => value.toLowerCase().includes(searchTerm.toLowerCase()))
     );
     console.log(this.prova);
