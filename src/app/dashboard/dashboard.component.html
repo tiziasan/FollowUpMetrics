@@ -23,6 +23,20 @@
 
 <button  mat-raised-button (click)="resetFilter()" >Reset Filters</button>
 
+<mat-chip-set aria-label="Selection">
+  <mat-chip *ngFor="let selected of selectedValues">
+    {{ selected }}
+  </mat-chip>
+</mat-chip-set>
+<!--
+<mat-chip-set aria-label="Fish selection">
+  <mat-chip *ngIf="selected">{{ selected }}</mat-chip>
+</mat-chip-set>-->
+
+
+
+
+
 <table mat-table [dataSource]="dataSource" matSort
        class="mat-elevation-z8">
 

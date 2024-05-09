@@ -10,6 +10,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatRadioButton} from "@angular/material/radio";
 import {MatButton} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
+import {MatChipsModule} from '@angular/material/chips';
+import {NgForOf, NgIf} from "@angular/common";
+
 
 export interface Metrics {
   metric: string;
@@ -80,7 +83,7 @@ const ELEMENT_DATA: Metrics[] = [
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [MatTableModule, MatSortModule, MatFormField, MatSelect, MatOption, MatSelectModule, MatFormFieldModule, MatRadioButton, MatButton, RouterLink],
+  imports: [MatChipsModule, MatTableModule, MatSortModule, MatFormField, MatSelect, MatOption, MatSelectModule, MatFormFieldModule, MatRadioButton, MatButton, RouterLink, NgIf, NgForOf],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -90,6 +93,7 @@ export class DashboardComponent implements AfterViewInit{
   displayedColumns: string[] = ['metric', 'title', 'assessment', 'input','description','setting', 'object', 'property', 'output', 'field', 'standard', 'score'];
   prova = ELEMENT_DATA;
   dataSource = new MatTableDataSource(this.prova);
+  selectedValues: string[] = [];
   constructor(private _liveAnnouncer: LiveAnnouncer) {}
 
   // @ts-ignore
@@ -106,12 +110,15 @@ export class DashboardComponent implements AfterViewInit{
     );
     console.log(this.prova);
     this.dataSource = new MatTableDataSource(this.prova);
+    if (!this.selectedValues.includes(searchTerm)) {
+      this.selectedValues.push(searchTerm);
+    }
   }
 
   resetFilter(){
     this.prova = ELEMENT_DATA;
     this.dataSource = new MatTableDataSource(this.prova);
-
+    this.selectedValues = [];
   }
 
 
